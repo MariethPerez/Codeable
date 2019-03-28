@@ -1,3 +1,27 @@
+
+--Cuál es la película más popular por semana, mes y año?
+
+select count (*)as cantidad, p.id_pelicula,  a.fecha_alquiler  from pelicula as p
+	inner join casete as c on p.id_pelicula=c.id_pelicula
+	inner join alquiler as a on a.id_casete=c.id_casete
+	group by p.id_pelicula, a.fecha_alquiler 
+	having a.fecha_alquiler >= to_date('20190321','YYYYMMDD')and  a.fecha_alquiler <= to_date('20190325','YYYYMMDD');
+
+--Cuál es la película más popular por mes?
+
+select count (*)as cantidad, p.id_pelicula,  a.fecha_alquiler  from pelicula as p
+	inner join casete as c on p.id_pelicula=c.id_pelicula
+	inner join alquiler as a on a.id_casete=c.id_casete
+	group by p.id_pelicula, a.fecha_alquiler 
+	having a.fecha_alquiler >= to_date('20190301','YYYYMMDD')and  a.fecha_alquiler <= to_date('20190331','YYYYMMDD');
+
+--Cuál es la película más popular por año?
+select count (*)as cantidad, p.id_pelicula,  a.fecha_alquiler  from pelicula as p
+	inner join casete as c on p.id_pelicula=c.id_pelicula
+	inner join alquiler as a on a.id_casete=c.id_casete
+	group by p.id_pelicula, a.fecha_alquiler 
+	having a.fecha_alquiler >= to_date('20180301','YYYYMMDD')and  a.fecha_alquiler <= to_date('20190331','YYYYMMDD');
+
 --Cuáles son las 5 películas menos populares?
 select count (*)as cantidad, p.id_pelicula from pelicula as p
 	inner join casete as c on p.id_pelicula=c.id_pelicula
